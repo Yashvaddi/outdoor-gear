@@ -1,0 +1,168 @@
+@use '../styles/variables' as *;
+
+.page {
+  min-height: 100vh;
+  background: $color-background;
+}
+
+// ── Hero Banner ────────────────────────────────────────────────────
+.hero {
+  background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 60%, #38bdf8 100%);
+  color: white;
+  padding: $spacing-12 0;
+}
+
+.heroSale {
+  background: linear-gradient(135deg, #7f1d1d 0%, #dc2626 60%, #f59e0b 100%);
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: $spacing-2;
+  font-size: 0.8rem;
+  opacity: 0.75;
+  margin-bottom: $spacing-4;
+
+  a {
+    color: white;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  span {
+    color: white;
+  }
+}
+
+.heroTitle {
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin-bottom: $spacing-3;
+}
+
+.heroDesc {
+  font-size: 1rem;
+  opacity: 0.85;
+  max-width: 480px;
+}
+
+// ── Main Content ───────────────────────────────────────────────────
+.main {
+  padding-top: $spacing-8;
+  padding-bottom: $spacing-16;
+}
+
+// ── Toolbar ────────────────────────────────────────────────────────
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: $spacing-6;
+  padding-bottom: $spacing-4;
+  border-bottom: 1px solid $color-border;
+}
+
+.count {
+  font-size: 0.875rem;
+  color: $color-text-light;
+}
+
+.sortWrapper {
+  display: flex;
+  align-items: center;
+  gap: $spacing-2;
+}
+
+.sortLabel {
+  font-size: 0.875rem;
+  color: $color-text-light;
+}
+
+.sortSelect {
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  padding: $spacing-2 $spacing-3;
+  font-size: 0.875rem;
+  font-family: inherit;
+  color: $color-text;
+  background: $color-surface;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s;
+
+  &:focus {
+    border-color: $color-primary;
+  }
+}
+
+// ── Product Grid ───────────────────────────────────────────────────
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $spacing-4;
+
+  @media (min-width: $breakpoint-md) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: $spacing-6;
+  }
+
+  @media (min-width: $breakpoint-lg) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+// ── Skeleton Loading ───────────────────────────────────────────────
+.skeletonGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $spacing-4;
+
+  @media (min-width: $breakpoint-md) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: $spacing-6;
+  }
+
+  @media (min-width: $breakpoint-lg) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.skeleton {
+  aspect-ratio: 3/5;
+  background: linear-gradient(90deg, $color-border 25%, #edf0f4 50%, $color-border 75%);
+  background-size: 200% 100%;
+  border-radius: $radius-lg;
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+// ── Error State ────────────────────────────────────────────────────
+.error {
+  text-align: center;
+  padding: $spacing-16;
+
+  p {
+    color: $color-danger;
+    margin-bottom: $spacing-4;
+  }
+
+  button {
+    background: $color-primary;
+    color: white;
+    padding: $spacing-2 $spacing-6;
+    border-radius: $radius-md;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    font-family: inherit;
+  }
+}

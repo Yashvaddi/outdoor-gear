@@ -1,0 +1,288 @@
+@use '../styles/variables' as *;
+
+.page {
+  min-height: 100vh;
+  background: $color-background;
+}
+
+// ── Hero ──────────────────────────────────────────────────────────
+.hero {
+  background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 55%, #1d4ed8 100%);
+  color: white;
+  padding: $spacing-16 0;
+  overflow: hidden;
+}
+
+.heroInner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-12;
+  align-items: center;
+
+  @media (min-width: $breakpoint-md) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.heroContent {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-6;
+}
+
+.heroBadge {
+  display: inline-flex;
+  width: fit-content;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,0.2);
+  padding: $spacing-1 $spacing-4;
+  border-radius: $radius-full;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.heroTitle {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+}
+
+.heroAccent {
+  background: linear-gradient(90deg, #60a5fa, #38bdf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.heroSubtitle {
+  font-size: 1rem;
+  line-height: 1.7;
+  opacity: 0.8;
+  max-width: 420px;
+}
+
+.heroActions {
+  display: flex;
+  align-items: center;
+  gap: $spacing-4;
+  flex-wrap: wrap;
+}
+
+.heroCta {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-2;
+  background: white;
+  color: $color-primary;
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: $spacing-3 $spacing-6;
+  border-radius: $radius-full;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    text-decoration: none;
+  }
+}
+
+.heroCtaOutline {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-2;
+  border: 2px solid rgba(255,255,255,0.5);
+  color: white;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: $spacing-3 $spacing-6;
+  border-radius: $radius-full;
+  text-decoration: none;
+  transition: border-color 0.2s, background 0.2s;
+
+  &:hover {
+    border-color: white;
+    background: rgba(255,255,255,0.1);
+    text-decoration: none;
+  }
+}
+
+// ── Hero Visual ───────────────────────────────────────────────────
+.heroVisual {
+  position: relative;
+  display: none;
+
+  @media (min-width: $breakpoint-md) {
+    display: block;
+  }
+}
+
+.heroCard {
+  border-radius: $radius-lg;
+  overflow: hidden;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+  position: relative;
+}
+
+.heroCardBadge {
+  position: absolute;
+  top: $spacing-4;
+  left: $spacing-4;
+  background: $color-danger;
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: $spacing-1 $spacing-3;
+  border-radius: $radius-full;
+  z-index: 2;
+}
+
+.heroImage {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  display: block;
+}
+
+.heroStat {
+  position: absolute;
+  bottom: $spacing-6;
+  right: -$spacing-6;
+  background: white;
+  color: $color-text;
+  border-radius: $radius-lg;
+  padding: $spacing-3 $spacing-4;
+  box-shadow: $shadow-lg;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 90px;
+}
+
+.heroStatAlt {
+  bottom: auto;
+  top: $spacing-6;
+  right: -$spacing-6;
+}
+
+.heroStatNum {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: $color-primary;
+}
+
+.heroStatLabel {
+  font-size: 0.65rem;
+  color: $color-text-muted;
+  text-align: center;
+}
+
+// ── Trust Bar ─────────────────────────────────────────────────────
+.trustBar {
+  background: $color-surface;
+  border-bottom: 1px solid $color-border;
+  padding: $spacing-6 0;
+}
+
+.trustInner {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-4;
+
+  @media (min-width: $breakpoint-md) {
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 0;
+  }
+}
+
+.trustItem {
+  display: flex;
+  align-items: center;
+  gap: $spacing-3;
+
+  div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  strong {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: $color-text;
+  }
+
+  span {
+    font-size: 0.75rem;
+    color: $color-text-muted;
+  }
+}
+
+.trustIcon {
+  color: $color-primary;
+  flex-shrink: 0;
+}
+
+// ── CTA Banner ────────────────────────────────────────────────────
+.ctaBanner {
+  background: linear-gradient(135deg, #7f1d1d, #dc2626, #f59e0b);
+  padding: $spacing-12 0;
+  color: white;
+}
+
+.ctaInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: $spacing-6;
+}
+
+.ctaTitle {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin-bottom: $spacing-2;
+}
+
+.ctaSubtitle {
+  opacity: 0.85;
+  font-size: 0.95rem;
+}
+
+.ctaBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-2;
+  background: white;
+  color: #dc2626;
+  font-weight: 700;
+  padding: $spacing-3 $spacing-8;
+  border-radius: $radius-full;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: transform 0.2s, box-shadow 0.2s;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    text-decoration: none;
+  }
+}
+
+// ── Footer ────────────────────────────────────────────────────────
+.footer {
+  background: #0f172a;
+  padding: $spacing-8 0;
+}
+
+.footerText {
+  color: #94a3b8;
+  font-size: 0.875rem;
+  text-align: center;
+}

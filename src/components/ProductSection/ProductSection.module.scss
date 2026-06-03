@@ -1,0 +1,121 @@
+@use '../../styles/variables' as *;
+
+.section {
+  padding: $spacing-16 0;
+
+  &:nth-child(even) {
+    background: $color-background;
+  }
+
+  &:nth-child(odd) {
+    background: $color-surface;
+  }
+}
+
+// ── Accent borders ─────────────────────────────────────────────────
+.blue .title::after  { background: $color-primary; }
+.rose .title::after  { background: #e11d48; }
+.amber .title::after { background: $color-warning; }
+
+// ── Section Header ─────────────────────────────────────────────────
+.header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: $spacing-8;
+  flex-wrap: wrap;
+  gap: $spacing-4;
+}
+
+.eyebrow {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: $color-primary;
+  margin-bottom: $spacing-2;
+
+  .rose & { color: #e11d48; }
+  .amber & { color: $color-warning; }
+}
+
+.title {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 800;
+  color: $color-text;
+  letter-spacing: -0.03em;
+  position: relative;
+  padding-bottom: $spacing-3;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    border-radius: $radius-full;
+    background: $color-primary;
+  }
+}
+
+.viewAll {
+  display: flex;
+  align-items: center;
+  gap: $spacing-1;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: $color-primary;
+  text-decoration: none;
+  transition: gap 0.2s;
+  white-space: nowrap;
+
+  &:hover {
+    gap: $spacing-2;
+    text-decoration: none;
+  }
+
+  .rose & { color: #e11d48; }
+  .amber & { color: $color-warning; }
+}
+
+// ── Product Grid ───────────────────────────────────────────────────
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $spacing-4;
+
+  @media (min-width: $breakpoint-md) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: $spacing-6;
+  }
+
+  @media (min-width: $breakpoint-lg) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+// ── Skeleton ───────────────────────────────────────────────────────
+.skeletonGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $spacing-4;
+
+  @media (min-width: $breakpoint-md) {
+    grid-template-columns: repeat(4, 1fr);
+    gap: $spacing-6;
+  }
+}
+
+.skeleton {
+  aspect-ratio: 3/5;
+  background: linear-gradient(90deg, $color-border 25%, #edf0f4 50%, $color-border 75%);
+  background-size: 200% 100%;
+  border-radius: $radius-lg;
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}

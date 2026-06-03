@@ -1,0 +1,231 @@
+@use '../../styles/variables' as *;
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba($color-background, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid $color-border;
+  transition: box-shadow 0.3s ease;
+
+  &.scrolled {
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+  }
+}
+
+.headerContainer {
+  display: flex;
+  align-items: center;
+  height: 68px;
+  gap: $spacing-6;
+}
+
+// ── Logo ───────────────────────────────────────────────────────────────────
+.logo {
+  a {
+    display: flex;
+    align-items: center;
+    gap: $spacing-2;
+    text-decoration: none;
+  }
+}
+
+.logoIcon {
+  color: $color-primary;
+}
+
+.logoText {
+  font-family: $font-display;
+  font-weight: 800;
+  font-size: 1rem;
+  letter-spacing: 0.12em;
+  color: $color-text;
+  white-space: nowrap;
+}
+
+// ── Desktop Nav ────────────────────────────────────────────────────────────
+.navDesktop {
+  display: none;
+  align-items: center;
+  gap: $spacing-1;
+  flex: 1;
+
+  @media (min-width: $breakpoint-md) {
+    display: flex;
+  }
+}
+
+.navLink {
+  padding: $spacing-2 $spacing-3;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: $color-text-light;
+  text-decoration: none;
+  border-radius: $radius-md;
+  transition: all 0.2s;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    left: 50%;
+    right: 50%;
+    height: 2px;
+    background: $color-primary;
+    border-radius: $radius-full;
+    transition: left 0.25s ease, right 0.25s ease;
+  }
+
+  &:hover {
+    color: $color-text;
+    text-decoration: none;
+
+    &::after {
+      left: $spacing-3;
+      right: $spacing-3;
+    }
+  }
+
+  &.navLinkActive {
+    color: $color-text;
+
+    &::after {
+      left: $spacing-3;
+      right: $spacing-3;
+    }
+  }
+}
+
+// ── Action Icons ───────────────────────────────────────────────────────────
+.actions {
+  display: flex;
+  align-items: center;
+  gap: $spacing-1;
+  margin-left: auto;
+}
+
+.actionButton {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: $radius-md;
+  color: $color-text-light;
+  transition: all 0.2s;
+
+  &:hover {
+    background: $color-surface-hover;
+    color: $color-text;
+  }
+}
+
+.heartActive {
+  color: $color-danger;
+}
+
+.wishlistBadge {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 3px;
+  background: $color-danger;
+  color: white;
+  font-size: 0.65rem;
+  font-weight: 700;
+  border-radius: $radius-full;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.cartButton {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: $radius-md;
+  color: $color-text-light;
+  transition: all 0.2s;
+
+  &:hover {
+    background: $color-surface-hover;
+    color: $color-primary;
+  }
+}
+
+.cartBadge {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 3px;
+  background: $color-primary;
+  color: white;
+  font-size: 0.65rem;
+  font-weight: 700;
+  border-radius: $radius-full;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  animation: pop 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+}
+
+@keyframes pop {
+  from { transform: scale(0.5); opacity: 0; }
+  to   { transform: scale(1);   opacity: 1; }
+}
+
+.menuButton {
+  @media (min-width: $breakpoint-md) {
+    display: none;
+  }
+}
+
+// ── Mobile Nav ─────────────────────────────────────────────────────────────
+.navMobile {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  border-top: 0px solid $color-border;
+
+  @media (min-width: $breakpoint-md) {
+    display: none;
+  }
+
+  &.navMobileOpen {
+    max-height: 300px;
+    border-top: 1px solid $color-border;
+  }
+}
+
+.mobileLink {
+  padding: $spacing-4 $spacing-6;
+  font-size: 1rem;
+  font-weight: 500;
+  color: $color-text-light;
+  text-decoration: none;
+  border-bottom: 1px solid $color-border;
+  transition: color 0.2s, background 0.2s;
+
+  &:last-child { border-bottom: none; }
+
+  &:hover,
+  &.mobileLinkActive {
+    color: $color-primary;
+    background: rgba($color-primary, 0.06);
+  }
+}

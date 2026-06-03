@@ -1,0 +1,60 @@
+@use '../../styles/variables' as *;
+
+@keyframes shimmer {
+  0%   { background-position: -600px 0; }
+  100% { background-position: 600px 0; }
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    $color-surface 25%,
+    $color-surface-hover 50%,
+    $color-surface 75%
+  );
+  background-size: 1200px 100%;
+  animation: shimmer 1.5s infinite linear;
+  border-radius: $radius-md;
+}
+
+// ── Gallery Skeleton ────────────────────────────────────────────────────────
+.gallerySkeletonWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-3;
+}
+
+.mainImageSkeleton {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  border-radius: $radius-xl;
+}
+
+.thumbRow {
+  display: flex;
+  gap: $spacing-2;
+}
+
+.thumbSkeleton {
+  flex: 1;
+  aspect-ratio: 1;
+  border-radius: $radius-md;
+}
+
+// ── Info Skeleton ───────────────────────────────────────────────────────────
+.infoSkeletonWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-4;
+}
+
+.swatchRow {
+  display: flex;
+  gap: $spacing-3;
+}
+
+.sizeRow {
+  display: flex;
+  gap: $spacing-2;
+  flex-wrap: wrap;
+}

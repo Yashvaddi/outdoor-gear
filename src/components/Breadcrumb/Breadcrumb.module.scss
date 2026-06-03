@@ -1,0 +1,51 @@
+@use '../../styles/variables' as *;
+
+.breadcrumb {
+  margin-bottom: $spacing-4;
+}
+
+.list {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: $spacing-1;
+  list-style: none;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: $spacing-1;
+}
+
+.link {
+  font-size: 0.8125rem;
+  color: $color-text-muted;
+  text-decoration: none;
+  transition: color 0.2s;
+
+  &:hover {
+    color: $color-primary;
+    text-decoration: none;
+  }
+}
+
+.current {
+  font-size: 0.8125rem;
+  color: $color-text-light;
+  font-weight: 500;
+  // Truncate long product names
+  max-width: 240px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  @media (max-width: $breakpoint-sm) {
+    max-width: 160px;
+  }
+}
+
+.separator {
+  color: $color-text-muted;
+  flex-shrink: 0;
+}

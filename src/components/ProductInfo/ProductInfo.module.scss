@@ -1,0 +1,577 @@
+@use '../../styles/variables' as *;
+
+.productInfo {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-6;
+}
+
+// ── Header ──────────────────────────────────────────────────────────────────
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-3;
+}
+
+.brandRow {
+  display: flex;
+  align-items: center;
+  gap: $spacing-3;
+}
+
+.brand {
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: $color-text-muted;
+  font-weight: 600;
+}
+
+.productBadge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: $color-primary;
+  background: rgba($color-primary, 0.12);
+  border: 1px solid rgba($color-primary, 0.25);
+  padding: 2px 8px;
+  border-radius: $radius-full;
+}
+
+.title {
+  font-family: $font-display;
+  font-size: clamp(1.375rem, 3vw, 1.875rem);
+  font-weight: 800;
+  color: $color-text;
+  line-height: 1.2;
+  margin-bottom: 0;
+  letter-spacing: -0.03em;
+}
+
+// ── Star Rating ─────────────────────────────────────────────────────────────
+.ratingRow {
+  display: flex;
+  align-items: center;
+  gap: $spacing-2;
+}
+
+.stars {
+  display: flex;
+  gap: 2px;
+}
+
+.ratingValue {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: $color-text;
+}
+
+.ratingCount {
+  font-size: 0.8125rem;
+  color: $color-text-muted;
+}
+
+// ── Price ───────────────────────────────────────────────────────────────────
+.priceContainer {
+  display: flex;
+  align-items: baseline;
+  gap: $spacing-3;
+  flex-wrap: wrap;
+}
+
+.salePrice {
+  font-family: $font-display;
+  font-size: 2rem;
+  font-weight: 800;
+  color: $color-text;
+}
+
+.originalPrice {
+  font-size: 1.125rem;
+  color: $color-text-muted;
+  text-decoration: line-through;
+}
+
+.discountBadge {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: $color-success;
+  background: rgba($color-success, 0.1);
+  border: 1px solid rgba($color-success, 0.2);
+  padding: 3px 10px;
+  border-radius: $radius-full;
+}
+
+// ── Sections ────────────────────────────────────────────────────────────────
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-3;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: baseline;
+  gap: $spacing-2;
+}
+
+.sectionTitle {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: $color-text;
+  letter-spacing: 0.02em;
+}
+
+.selectedValue {
+  font-size: 0.875rem;
+  color: $color-text-light;
+}
+
+.sizeGuideLink {
+  margin-left: auto;
+  font-size: 0.75rem;
+  color: $color-primary;
+  text-decoration: underline;
+
+  &:hover { text-decoration: none; }
+}
+
+// ── Color Swatches ──────────────────────────────────────────────────────────
+.swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-3;
+}
+
+.swatch {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background-color: var(--swatch-color);
+  border: 2.5px solid transparent;
+  outline: 2px solid transparent;
+  outline-offset: 3px;
+  box-shadow: $shadow-md;
+  transition: all 0.2s ease;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.12);
+    box-shadow: 0 0 0 2px $color-surface, 0 0 0 4px $color-border-light;
+  }
+
+  &.swatchActive {
+    outline-color: $color-primary;
+    transform: scale(1.05);
+  }
+}
+
+// ── Size Grid ───────────────────────────────────────────────────────────────
+.sizeGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-2;
+}
+
+.sizeCell {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sizeBtn {
+  min-width: 56px;
+  height: 44px;
+  padding: 0 $spacing-3;
+  border: 1.5px solid $color-border;
+  border-radius: $radius-md;
+  background: $color-surface;
+  color: $color-text;
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
+  position: relative;
+
+  &:hover:not(:disabled) {
+    border-color: $color-primary;
+    background: rgba($color-primary, 0.06);
+    color: $color-text;
+    transform: translateY(-1px);
+  }
+
+  &.sizeBtnActive {
+    border-color: $color-primary;
+    background: $color-primary;
+    color: white;
+    box-shadow: 0 0 12px rgba($color-primary, 0.35);
+  }
+
+  &.sizeBtnSoldOut {
+    border-color: $color-border;
+    background: transparent;
+    color: $color-text-muted;
+    cursor: not-allowed;
+    text-decoration: line-through;
+    opacity: 0.4;
+    position: relative;
+
+    // Diagonal strike
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom right,
+        transparent calc(50% - 0.5px),
+        rgba($color-text-muted, 0.3) calc(50% - 0.5px),
+        rgba($color-text-muted, 0.3) calc(50% + 0.5px),
+        transparent calc(50% + 0.5px)
+      );
+      border-radius: $radius-md;
+    }
+  }
+
+  &.sizeBtnLow {
+    border-color: rgba($color-warning, 0.5);
+  }
+}
+
+.lowStockPip {
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 5px;
+  height: 5px;
+  background: $color-warning;
+  border-radius: 50%;
+}
+
+// ── Stock Alert ─────────────────────────────────────────────────────────────
+.stockAlert {
+  display: flex;
+  align-items: center;
+  gap: $spacing-2;
+  padding: $spacing-3;
+  border-radius: $radius-md;
+  font-size: 0.8125rem;
+  animation: slideIn 0.2s ease;
+
+  &[data-type='soldout'] {
+    background: rgba($color-danger, 0.08);
+    border: 1px solid rgba($color-danger, 0.18);
+    color: $color-danger;
+  }
+
+  &[data-type='low'] {
+    background: rgba($color-warning, 0.08);
+    border: 1px solid rgba($color-warning, 0.2);
+    color: $color-warning;
+  }
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+// ── Quantity ────────────────────────────────────────────────────────────────
+.quantityPicker {
+  display: inline-flex;
+  align-items: center;
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius-md;
+  overflow: hidden;
+  width: fit-content;
+}
+
+.qtyBtn {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  color: $color-text;
+  transition: background 0.15s;
+
+  &:hover:not(:disabled) {
+    background: $color-surface-hover;
+  }
+
+  &:disabled {
+    color: $color-text-muted;
+    cursor: not-allowed;
+  }
+}
+
+.qtyValue {
+  min-width: 48px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 1rem;
+  color: $color-text;
+  font-family: $font-display;
+}
+
+// ── Feedback Banners ────────────────────────────────────────────────────────
+.feedbackBanner {
+  display: flex;
+  align-items: center;
+  gap: $spacing-2;
+  padding: $spacing-3 $spacing-4;
+  border-radius: $radius-md;
+  font-size: 0.875rem;
+  animation: slideIn 0.2s ease;
+
+  &[data-type='error'] {
+    background: rgba($color-danger, 0.08);
+    border: 1px solid rgba($color-danger, 0.18);
+    color: $color-danger;
+  }
+
+  &[data-type='success'] {
+    background: rgba($color-success, 0.08);
+    border: 1px solid rgba($color-success, 0.2);
+    color: $color-success;
+  }
+}
+
+.dismissBtn {
+  margin-left: auto;
+  font-size: 1.125rem;
+  line-height: 1;
+  padding: 0 4px;
+  opacity: 0.7;
+  color: inherit;
+
+  &:hover { opacity: 1; }
+}
+
+// ── CTAs ────────────────────────────────────────────────────────────────────
+.ctaRow {
+  display: flex;
+  gap: $spacing-3;
+}
+
+.addToCart {
+  flex: 1;
+  height: 56px;
+  background: linear-gradient(135deg, $color-primary 0%, $color-primary-dark 100%);
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: $radius-md;
+  letter-spacing: 0.02em;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-2;
+  box-shadow: 0 4px 16px rgba($color-primary, 0.3);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.12), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba($color-primary, 0.45);
+
+    &::before { opacity: 1; }
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  &.addToCartDisabled {
+    background: $color-surface-hover;
+    color: $color-text-muted;
+    box-shadow: none;
+    cursor: not-allowed;
+  }
+}
+
+.btnSpinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.wishlistBtn {
+  width: 56px;
+  height: 56px;
+  border-radius: $radius-md;
+  border: 1.5px solid $color-border;
+  color: $color-text-muted;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.25s ease;
+
+  &:hover {
+    border-color: $color-danger;
+    color: $color-danger;
+    background: rgba($color-danger, 0.06);
+  }
+
+  &.wishlistBtnActive {
+    border-color: $color-danger;
+    color: $color-danger;
+    background: rgba($color-danger, 0.08);
+
+    &:hover {
+      background: rgba($color-danger, 0.15);
+    }
+  }
+}
+
+// ── Delivery Estimate ────────────────────────────────────────────────────────
+.deliveryEstimate {
+  display: flex;
+  align-items: center;
+  gap: $spacing-3;
+  padding: $spacing-3 $spacing-4;
+  background: rgba($color-success, 0.05);
+  border: 1px dashed rgba($color-success, 0.3);
+  border-radius: $radius-md;
+  color: $color-text-light;
+  font-size: 0.875rem;
+  
+  strong {
+    color: $color-success;
+    font-weight: 700;
+  }
+}
+
+.estimateIcon {
+  color: $color-success;
+  flex-shrink: 0;
+}
+
+// ── Trust Strip ─────────────────────────────────────────────────────────────
+.trustStrip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $spacing-3;
+  padding: $spacing-4;
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+
+  @media (max-width: $breakpoint-sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.trustItem {
+  display: flex;
+  align-items: flex-start;
+  gap: $spacing-2;
+  font-size: 0.8rem;
+
+  div {
+    display: flex;
+    flex-direction: column;
+
+    strong {
+      color: $color-text;
+      font-weight: 600;
+      font-size: 0.8125rem;
+    }
+
+    span {
+      color: $color-text-muted;
+      font-size: 0.75rem;
+    }
+  }
+}
+
+.trustIcon {
+  color: $color-primary;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+// ── Features Collapsible ────────────────────────────────────────────────────
+.featuresSection {
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  overflow: hidden;
+}
+
+.featuresToggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $spacing-4;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: $color-text;
+  transition: background 0.2s;
+  font-family: $font-display;
+
+  &:hover {
+    background: $color-surface-hover;
+  }
+}
+
+.chevron {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  color: $color-text-muted;
+
+  &.chevronOpen {
+    transform: rotate(180deg);
+  }
+}
+
+.featuresList {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  list-style: none;
+  padding: 0 $spacing-4;
+
+  &.featuresListOpen {
+    max-height: 400px;
+    padding-bottom: $spacing-4;
+  }
+}
+
+.featureItem {
+  display: flex;
+  align-items: flex-start;
+  gap: $spacing-3;
+  padding: $spacing-2 0;
+  font-size: 0.875rem;
+  color: $color-text-light;
+  border-top: 1px solid $color-border;
+
+  &:first-child { border-top: none; }
+}
+
+.featureCheck {
+  color: $color-success;
+  flex-shrink: 0;
+  margin-top: 2px;
+}

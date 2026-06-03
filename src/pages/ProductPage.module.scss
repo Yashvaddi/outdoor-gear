@@ -1,0 +1,130 @@
+@use '../styles/variables' as *;
+
+@keyframes shimmer {
+  0%   { background-position: -600px 0; }
+  100% { background-position: 600px 0; }
+}
+
+.page {
+  min-height: 100vh;
+}
+
+.main {
+  padding-top: $spacing-6;
+  padding-bottom: $spacing-16;
+}
+
+// ── Skeleton ────────────────────────────────────────────────────────────────
+.breadcrumbSkeleton {
+  height: 18px;
+  width: 280px;
+  border-radius: $radius-sm;
+  background: linear-gradient(
+    90deg,
+    $color-surface 25%,
+    $color-surface-hover 50%,
+    $color-surface 75%
+  );
+  background-size: 1200px 100%;
+  animation: shimmer 1.5s infinite linear;
+  margin-bottom: $spacing-5;
+}
+
+// ── Product Grid ─────────────────────────────────────────────────────────────
+.productGrid {
+  display: grid;
+  gap: $spacing-8;
+  margin-top: $spacing-2;
+
+  @media (min-width: $breakpoint-md) {
+    grid-template-columns: 55% 1fr;
+    gap: $spacing-12;
+    align-items: start;
+  }
+}
+
+.galleryCol {
+  @media (min-width: $breakpoint-md) {
+    position: sticky;
+    top: 88px; // header height + gap
+  }
+}
+
+.infoCol {
+  // natural flow
+}
+
+// ── Error State ──────────────────────────────────────────────────────────────
+.errorContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+}
+
+.errorCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-4;
+  text-align: center;
+  max-width: 400px;
+  padding: $spacing-8;
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius-xl;
+  box-shadow: $shadow-lg;
+
+  h2 {
+    font-size: 1.375rem;
+    color: $color-text;
+    margin-bottom: 0;
+  }
+
+  p {
+    font-size: 0.9375rem;
+    color: $color-text-muted;
+    line-height: 1.6;
+  }
+}
+
+.errorEmoji {
+  font-size: 3rem;
+}
+
+.errorActions {
+  display: flex;
+  gap: $spacing-3;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: $spacing-2;
+}
+
+.retryBtn {
+  padding: $spacing-3 $spacing-6;
+  background: $color-primary;
+  color: white;
+  border-radius: $radius-md;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: background 0.2s;
+
+  &:hover { background: $color-primary-dark; }
+}
+
+.homeBtn {
+  padding: $spacing-3 $spacing-6;
+  border: 1px solid $color-border;
+  color: $color-text-muted;
+  border-radius: $radius-md;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: all 0.2s;
+
+  &:hover {
+    border-color: $color-border-light;
+    color: $color-text;
+    text-decoration: none;
+  }
+}

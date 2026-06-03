@@ -1,0 +1,288 @@
+@use '../../styles/variables' as *;
+@use 'sass:color';
+
+.container {
+  margin-top: $spacing-12;
+  border-top: 1px solid $color-border;
+  padding-top: $spacing-8;
+}
+
+// ── Tab List ────────────────────────────────────────────────────────────────
+.tabList {
+  position: relative;
+  display: flex;
+  border-bottom: 1px solid $color-border;
+  overflow-x: auto;
+  scrollbar-width: none;
+  gap: 0;
+
+  &::-webkit-scrollbar { display: none; }
+}
+
+.tab {
+  padding: $spacing-3 $spacing-6;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: $color-text-muted;
+  white-space: nowrap;
+  transition: color 0.2s;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: $color-primary;
+    transform: scaleX(0);
+    transition: transform 0.25s ease;
+    border-radius: $radius-full $radius-full 0 0;
+  }
+
+  &:hover:not(.tabActive) {
+    color: $color-text-light;
+  }
+
+  &.tabActive {
+    color: $color-primary;
+
+    &::after {
+      transform: scaleX(1);
+    }
+  }
+}
+
+// ── Panels ──────────────────────────────────────────────────────────────────
+.panels {
+  padding: $spacing-8 0;
+}
+
+.panel {
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.panelTitle {
+  font-family: $font-display;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: $color-text;
+  margin-bottom: $spacing-5;
+}
+
+.bodyText {
+  color: $color-text-light;
+  line-height: 1.75;
+  max-width: 720px;
+  margin-bottom: $spacing-4;
+  font-size: 0.9375rem;
+
+  &:last-child { margin-bottom: 0; }
+}
+
+// ── Specifications ──────────────────────────────────────────────────────────
+.specTable {
+  width: 100%;
+  max-width: 760px;
+  border-collapse: collapse;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  overflow: hidden;
+
+  th, td {
+    padding: $spacing-3 $spacing-5;
+    text-align: left;
+    font-size: 0.9rem;
+    border-bottom: 1px solid $color-border;
+  }
+
+  th {
+    width: 35%;
+    font-weight: 600;
+    color: $color-text;
+    background: $color-surface;
+  }
+
+  td {
+    color: $color-text-light;
+    background: rgba($color-surface, 0.4);
+  }
+
+  tr:last-child {
+    th, td { border-bottom: none; }
+  }
+
+  tr:nth-child(even) {
+    th { background: $color-surface-hover; }
+    td { background: rgba($color-surface-hover, 0.5); }
+  }
+}
+
+// ── Review Summary ──────────────────────────────────────────────────────────
+.reviewSummary {
+  display: flex;
+  gap: $spacing-8;
+  align-items: center;
+  margin-bottom: $spacing-8;
+  padding: $spacing-6;
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius-xl;
+  flex-wrap: wrap;
+}
+
+.summaryScore {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-2;
+  flex-shrink: 0;
+}
+
+.bigRating {
+  font-family: $font-display;
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: $color-text;
+  line-height: 1;
+}
+
+.starRow {
+  display: flex;
+  gap: 2px;
+}
+
+.reviewCount {
+  font-size: 0.8125rem;
+  color: $color-text-muted;
+  white-space: nowrap;
+}
+
+// Rating bars
+.ratingBars {
+  flex: 1;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-2;
+}
+
+.barRow {
+  display: flex;
+  align-items: center;
+  gap: $spacing-2;
+}
+
+.barLabel {
+  font-size: 0.8rem;
+  color: $color-text-muted;
+  width: 22px;
+  flex-shrink: 0;
+}
+
+.barTrack {
+  flex: 1;
+  height: 7px;
+  background: $color-border;
+  border-radius: $radius-full;
+  overflow: hidden;
+}
+
+.barFill {
+  height: 100%;
+  background: linear-gradient(90deg, $color-warning, color.adjust(#f59e0b, $lightness: -5%));
+  border-radius: $radius-full;
+  transition: width 0.6s ease;
+}
+
+.barPct {
+  font-size: 0.75rem;
+  color: $color-text-muted;
+  width: 30px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+// ── Review Cards ─────────────────────────────────────────────────────────────
+.reviewList {
+  display: grid;
+  gap: $spacing-5;
+
+  @media (min-width: $breakpoint-md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: $breakpoint-lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.reviewCard {
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius-xl;
+  padding: $spacing-5;
+  transition: all 0.25s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: $shadow-lg;
+    border-color: $color-border-light;
+  }
+}
+
+.reviewHeader {
+  display: flex;
+  align-items: center;
+  gap: $spacing-3;
+  margin-bottom: $spacing-3;
+}
+
+.reviewAvatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, $color-primary, $color-primary-dark);
+  color: white;
+  font-weight: 700;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.reviewAuthor {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: $color-text;
+  line-height: 1.2;
+}
+
+.reviewDate {
+  font-size: 0.75rem;
+  color: $color-text-muted;
+}
+
+.reviewStars {
+  margin-left: auto;
+}
+
+.reviewTitle {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: $color-text;
+  margin-bottom: $spacing-2;
+}
+
+.reviewText {
+  font-size: 0.875rem;
+  color: $color-text-light;
+  line-height: 1.6;
+}
