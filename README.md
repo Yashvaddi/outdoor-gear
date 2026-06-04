@@ -1,6 +1,6 @@
 # Alpine Gear Co. - Product Detail Page
 
-**Live Demo:** [https://alpine-gear-demo.vercel.app](https://alpine-gear-demo.vercel.app) *(Placeholder for deployed URL)*
+**Live Demo:** [Outdoor Gear](https://outdoor-gear.vercel.app/)
 
 A production-quality React Product Detail Page built for a premium outdoor gear store.
 
