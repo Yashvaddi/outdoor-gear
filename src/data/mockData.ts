@@ -45,7 +45,7 @@ export const mockExtendedData: ExtendedProductData = {
     { label: 'Material',       value: 'G-1000 HeavyDuty Eco (65% polyester, 35% cotton)' },
     { label: 'Dimensions',     value: '15" × 10.6" × 5.1" (H × W × D)' },
     { label: 'Laptop Sleeve',  value: 'Up to 15" laptops' },
-    { label: 'Water Resistant',value: 'Yes — hydrostatic head 400 mm' },
+    { label: 'Water Resistant',value: 'Yes - hydrostatic head 400 mm' },
     { label: 'Origin',         value: 'Sweden' },
   ],
   colors: [

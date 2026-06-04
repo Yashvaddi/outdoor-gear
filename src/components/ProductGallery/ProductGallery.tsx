@@ -8,13 +8,13 @@ interface ProductGalleryProps {
 }
 
 export const ProductGallery: React.FC<ProductGalleryProps> = ({ images, productTitle = 'Product' }) => {
-  const [activeIndex,   setActiveIndex]   = useState(0);
-  const [isZoomed,      setIsZoomed]      = useState(false);
-  const [zoomPos,       setZoomPos]       = useState({ x: 50, y: 50 });
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isZoomed, setIsZoomed] = useState(false);
+  const [zoomPos, setZoomPos] = useState({ x: 50, y: 50 });
   const [isImageLoaded, setIsImageLoaded] = useState(false);
 
-  const containerRef  = useRef<HTMLDivElement>(null);
-  const imageRef      = useRef<HTMLImageElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const imageRef = useRef<HTMLImageElement>(null);
 
   // Reset when image set changes (color switch)
   useEffect(() => {
@@ -25,7 +25,7 @@ export const ProductGallery: React.FC<ProductGalleryProps> = ({ images, productT
   // Keyboard navigation
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
-      if (e.key === 'ArrowLeft')  goTo(activeIndex - 1);
+      if (e.key === 'ArrowLeft') goTo(activeIndex - 1);
       if (e.key === 'ArrowRight') goTo(activeIndex + 1);
     };
     window.addEventListener('keydown', handler);
@@ -56,7 +56,7 @@ export const ProductGallery: React.FC<ProductGalleryProps> = ({ images, productT
         onMouseLeave={() => setIsZoomed(false)}
         onMouseMove={handleMouseMove}
         role="img"
-        aria-label={`${productTitle} — image ${activeIndex + 1} of ${images.length}`}
+        aria-label={`${productTitle} image ${activeIndex + 1} of ${images.length}`}
       >
         {/* Loading shimmer */}
         {!isImageLoaded && <div className={styles.imageSkeleton} aria-hidden="true" />}

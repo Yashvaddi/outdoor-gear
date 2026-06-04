@@ -29,7 +29,7 @@ const REVIEWS = [
     date: '3 months ago',
     rating: 5,
     title: 'Worth every penny',
-    text: "Took this on a 3-day hike and it held up beautifully. The water resistance is no joke — got caught in a downpour and all my gear stayed perfectly dry inside.",
+    text: "Took this on a 3-day hike and it held up beautifully. The water resistance is no joke got caught in a downpour and all my gear stayed perfectly dry inside.",
   },
 ];
 
@@ -50,9 +50,9 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
   const [activeTab, setActiveTab] = useState<TabType>('description');
 
   const tabs: { key: TabType; label: string }[] = [
-    { key: 'description',   label: 'Description' },
+    { key: 'description', label: 'Description' },
     { key: 'specifications', label: 'Specifications' },
-    { key: 'reviews',       label: `Reviews (${REVIEWS.length})` },
+    { key: 'reviews', label: `Reviews (${REVIEWS.length})` },
   ];
 
   const avgRating = product.rating.rate;
@@ -91,8 +91,8 @@ export const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
           <h3 className={styles.panelTitle}>Product Overview</h3>
           <p className={styles.bodyText}>{product.description}</p>
           <p className={styles.bodyText}>
-            Designed for urban adventurers and outdoor explorers alike. Every pocket, strap, 
-            and zipper has been engineered to work exactly when you need it — whether you're 
+            Designed for urban adventurers and outdoor explorers alike. Every pocket, strap,
+            and zipper has been engineered to work exactly when you need it whether you're
             commuting through the city or navigating mountain trails.
           </p>
         </div>

@@ -42,7 +42,7 @@ const SalePage: React.FC = () => {
             <span>/</span>
             <span>Sale</span>
           </nav>
-          <h1 className={styles.heroTitle}>🔥 Sale — Up to 40% Off</h1>
+          <h1 className={styles.heroTitle}>🔥 Sale - Up to 40% Off</h1>
           <p className={styles.heroDesc}>
             Limited-time offers on our most popular outdoor gear. Don't miss out.
           </p>

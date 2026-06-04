@@ -14,12 +14,12 @@ I opted for Tabs over an Accordion for the below-the-fold product details. Tabs 
 **4. Low Stock Indicator Pattern**
 Rather than putting a badge *under* each size button (which caused layout overflow in earlier versions), I implemented two separate signals:
 - A small amber dot (`lowStockPip`) absolutely positioned just below the size button, visible at a glance
-- An inline alert banner below the size grid that appears only when the *selected* size has low stock, providing the specific count ("Only 3 left in this size — order soon!")
+- An inline alert banner below the size grid that appears only when the *selected* size has low stock, providing the specific count ("Only 3 left in this size order soon!")
 
 This separates the two concerns: *discovery* (dot while browsing) and *urgency* (banner on selection).
 
 **5. Wishlist with localStorage Persistence**
-The Wishlist uses a `Set<number>` internally for O(1) has/add/delete operations, serialized to a JSON array in localStorage. The context provides `toggleWishlist`, `isWishlisted`, and a `count` value — enough to power both the heart button on the PDP and the header badge. The heart icon in the header changes fill when at least one item is wishlisted.
+The Wishlist uses a `Set<number>` internally for O(1) has/add/delete operations, serialized to a JSON array in localStorage. The context provides `toggleWishlist`, `isWishlisted`, and a `count` value enough to power both the heart button on the PDP and the header badge. The heart icon in the header changes fill when at least one item is wishlisted.
 
 **6. Cart Drawer vs. Cart Page**
 I built a sliding `CartDrawer` component rather than navigating to a separate cart page. This provides a significantly better UX for reviewing/adjusting the cart without losing context on the current product. The drawer implements: backdrop blur, body scroll lock, Escape key close, focus management (`tabIndex={-1}` with auto-focus), and proper `aria-modal` roles.

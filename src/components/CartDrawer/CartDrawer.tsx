@@ -153,7 +153,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen, onClose }) => {
               </div>
               <p className={styles.taxNote}>Shipping & taxes calculated at checkout</p>
               <button className={styles.checkoutBtn}>
-                Checkout — ${cartTotal.toFixed(2)}
+                Checkout- ${cartTotal.toFixed(2)}
               </button>
               <button className={styles.continueBtn} onClick={onClose}>
                 Continue Shopping

@@ -16,17 +16,17 @@ const LOW_STOCK_THRESHOLD = 5;
 export const ProductInfo: React.FC<ProductInfoProps> = ({ product, onColorChange }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const { addToCart, isAdding, error, clearError } = useCart();
-  const { toggleWishlist, isWishlisted }            = useWishlist();
+  const { toggleWishlist, isWishlisted } = useWishlist();
 
   const colorParam = searchParams.get('color');
-  const sizeParam  = searchParams.get('size');
+  const sizeParam = searchParams.get('size');
 
   const selectedColor = product.colors.find(c => c.id === colorParam) ?? product.colors[0];
-  const selectedSize  = product.sizes.find(s => s.id === sizeParam)   ?? product.sizes.find(s => s.stock > 0) ?? product.sizes[0];
+  const selectedSize = product.sizes.find(s => s.id === sizeParam) ?? product.sizes.find(s => s.stock > 0) ?? product.sizes[0];
 
-  const [quantity,        setQuantity]        = useState(1);
-  const [showSuccess,     setShowSuccess]     = useState(false);
-  const [showFeatures,    setShowFeatures]    = useState(false);
+  const [quantity, setQuantity] = useState(1);
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [showFeatures, setShowFeatures] = useState(false);
 
   const wishlisted = isWishlisted(product.id);
 
@@ -65,19 +65,19 @@ export const ProductInfo: React.FC<ProductInfoProps> = ({ product, onColorChange
     try {
       await addToCart({
         productId: product.id,
-        title:     product.title,
-        price:     product.price,
-        colorId:   selectedColor.id,
-        sizeId:    selectedSize.id,
+        title: product.title,
+        price: product.price,
+        colorId: selectedColor.id,
+        sizeId: selectedSize.id,
         quantity,
-        image:     selectedColor.image,
+        image: selectedColor.image,
       });
       setShowSuccess(true);
       setTimeout(() => setShowSuccess(false), 3000);
     } catch { /* Handled by context */ }
   };
 
-  const isSoldOut  = selectedSize.stock === 0;
+  const isSoldOut = selectedSize.stock === 0;
   const isLowStock = selectedSize.stock > 0 && selectedSize.stock <= LOW_STOCK_THRESHOLD;
 
   const discount = Math.round(
@@ -162,7 +162,7 @@ export const ProductInfo: React.FC<ProductInfoProps> = ({ product, onColorChange
         <div className={styles.sizeGrid} role="radiogroup" aria-label="Size selection">
           {product.sizes.map(size => {
             const outOfStock = size.stock === 0;
-            const lowStock   = size.stock > 0 && size.stock <= LOW_STOCK_THRESHOLD;
+            const lowStock = size.stock > 0 && size.stock <= LOW_STOCK_THRESHOLD;
             const isSelected = selectedSize.id === size.id;
 
             return (
@@ -173,8 +173,8 @@ export const ProductInfo: React.FC<ProductInfoProps> = ({ product, onColorChange
                   aria-label={`Size ${size.name}${outOfStock ? ', sold out' : lowStock ? `, only ${size.stock} left` : ''}`}
                   className={`
                     ${styles.sizeBtn}
-                    ${isSelected   ? styles.sizeBtnActive    : ''}
-                    ${outOfStock   ? styles.sizeBtnSoldOut   : ''}
+                    ${isSelected ? styles.sizeBtnActive : ''}
+                    ${outOfStock ? styles.sizeBtnSoldOut : ''}
                     ${lowStock && !isSelected ? styles.sizeBtnLow : ''}
                   `}
                   disabled={outOfStock}
@@ -200,7 +200,7 @@ export const ProductInfo: React.FC<ProductInfoProps> = ({ product, onColorChange
         {isLowStock && !isSoldOut && (
           <div className={styles.stockAlert} data-type="low">
             <AlertCircle size={15} />
-            <span>Only <strong>{selectedSize.stock}</strong> left in this size — order soon!</span>
+            <span>Only <strong>{selectedSize.stock}</strong> left in this size order soon!</span>
           </div>
         )}
       </div>
@@ -260,7 +260,7 @@ export const ProductInfo: React.FC<ProductInfoProps> = ({ product, onColorChange
           ) : isSoldOut ? (
             'Sold Out'
           ) : (
-            `Add to Cart — $${(product.price * quantity).toFixed(2)}`
+            `Add to Cart $${(product.price * quantity).toFixed(2)}`
           )}
         </button>
 

@@ -17,7 +17,7 @@ export default function ProductPage() {
   const [activeColorId, setActiveColorId] = useState<string | null>(null);
 
   useSEO({
-    title: product ? `${product.title} — Alpine Gear Co.` : 'Loading product...',
+    title: product ? `${product.title} - Alpine Gear Co.` : 'Loading product...',
     description: product
       ? `Shop ${product.title} from Alpine Gear Co. Premium outdoor gear starting at $${product.price.toFixed(2)}.`
       : 'Premium outdoor gear and apparel',
@@ -68,12 +68,12 @@ export default function ProductPage() {
     );
   }
 
-  const selectedColor  = product.colors.find(c => c.id === activeColorId) ?? product.colors[0];
-  const imagesToShow   = selectedColor.thumbnails;
+  const selectedColor = product.colors.find(c => c.id === activeColorId) ?? product.colors[0];
+  const imagesToShow = selectedColor.thumbnails;
 
   const breadcrumbs = [
-    { label: 'Home',                     href: '/' },
-    { label: product.category,           href: `/category/${encodeURIComponent(product.category)}` },
+    { label: 'Home', href: '/' },
+    { label: product.category, href: `/category/${encodeURIComponent(product.category)}` },
     { label: product.title },
   ];
 

@@ -114,7 +114,7 @@ const HomePage: React.FC = () => {
         <div className="container">
           <div className={styles.ctaInner}>
             <div>
-              <h2 className={styles.ctaTitle}>🔥 Sale — Up to 40% off</h2>
+              <h2 className={styles.ctaTitle}>🔥 Sale - Up to 40% off</h2>
               <p className={styles.ctaSubtitle}>
                 Limited time. Don't miss out on our best deals of the season.
               </p>
