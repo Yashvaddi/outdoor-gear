@@ -19,7 +19,11 @@
   display: flex;
   align-items: center;
   height: 68px;
-  gap: $spacing-6;
+  gap: $spacing-2;
+  
+  @media (min-width: $breakpoint-md) {
+    gap: $spacing-6;
+  }
 }
 
 // ── Logo ───────────────────────────────────────────────────────────────────
@@ -39,10 +43,19 @@
 .logoText {
   font-family: $font-display;
   font-weight: 800;
-  font-size: 1rem;
-  letter-spacing: 0.12em;
+  font-size: 0.875rem;
+  letter-spacing: 0.08em;
   color: $color-text;
   white-space: nowrap;
+
+  @media (min-width: $breakpoint-md) {
+    font-size: 1rem;
+    letter-spacing: 0.12em;
+  }
+  
+  @media (max-width: 380px) {
+    display: none;
+  }
 }
 
 // ── Desktop Nav ────────────────────────────────────────────────────────────
@@ -103,20 +116,29 @@
 .actions {
   display: flex;
   align-items: center;
-  gap: $spacing-1;
+  gap: 0;
   margin-left: auto;
+
+  @media (min-width: $breakpoint-md) {
+    gap: $spacing-1;
+  }
 }
 
 .actionButton {
   position: relative;
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: $radius-md;
   color: $color-text-light;
   transition: all 0.2s;
+
+  @media (min-width: $breakpoint-md) {
+    width: 40px;
+    height: 40px;
+  }
 
   &:hover {
     background: $color-surface-hover;
@@ -148,14 +170,19 @@
 
 .cartButton {
   position: relative;
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: $radius-md;
   color: $color-text-light;
   transition: all 0.2s;
+
+  @media (min-width: $breakpoint-md) {
+    width: 40px;
+    height: 40px;
+  }
 
   &:hover {
     background: $color-surface-hover;
